@@ -11,20 +11,19 @@ end
 function fnyinyang(r,x,y)
  -- flip y because this function was originally written for a johnsonscript routine that writes out .bmp files directly. In .bmp format, x0,y0 is the bottom left corner, in lua x0,y0 is the top left
  y = r*2-y
- local c, r2, rh, yModRMinusRh
+ local r2, rh, yModRMinusRh
  if not (math.abs(x-r) < math.sin(math.acos( (y-r)/r ))*r ) then
   return 0
  end
  rh = r*0.5
  yModRMinusRh = math.floor(y % r) - rh
- c = ternaryOperator( (x-r) > (math.sin(math.acos( yModRMinusRh / rh )))*rh*ternaryOperator(y<r,-1,1), 1, 0)
  r2 = r / 7
  if yModRMinusRh < r2 then
   if math.abs(x-r) < r2 * math.sin(math.acos( yModRMinusRh / r2) ) then
    return 2-ternaryOperator(y>r,1,0)
   end
  end
- return 2-c
+ return 2-ternaryOperator( (x-r) > (math.sin(math.acos( yModRMinusRh / rh )))*rh*ternaryOperator(y<r,-1,1), 1, 0)
 end
 
 
